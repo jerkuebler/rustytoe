@@ -13,9 +13,8 @@ fn get_input() -> (i32, i32) {
 
     let mut inputs = input.split_whitespace()
         .map(|x| x.parse::<i32>().expect("Parse error"))
-        .collect::<Vec<i32>>();
-
-    inputs.retain(|&i| (-1 < i) & (i < 3));
+        .collect::<Vec<i32>>()
+        .retain(|&i| (-1 < i) & (i < 3));
 
     if inputs.len() != 2 {
         return (-1, -1);
