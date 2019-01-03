@@ -13,8 +13,9 @@ fn get_input() -> (i32, i32) {
 
     let mut inputs = input.split_whitespace()
         .map(|x| x.parse::<i32>().expect("Parse error"))
-        .collect::<Vec<i32>>()
-        .retain(|&i| (-1 < i) & (i < 3));
+        .collect::<Vec<i32>>();
+
+    inputs.retain(|&i| (-1 < i) & (i < 3));
 
     if inputs.len() != 2 {
         return (-1, -1);
@@ -27,16 +28,15 @@ fn get_input() -> (i32, i32) {
 fn take_turn(player:char, board: &mut [[char; 3]; 3]) -> (i32, i32) {
     display_board(&board);
 
-    let mut valid = false;
-    let mut input:(i32, i32) = (-1,-1);
+    let mut input:(i32, i32);
 
-    while !valid {
+    loop {
         println!("Player {}, Enter coordinates x y:", player);
         input = get_input();
         let loc = board[input.0 as usize][input.1 as usize];
         if loc == 'N' {
             board[input.0 as usize][input.1 as usize] = player;
-            valid = true;
+            break;
         } else {
             println!("Invalid: {} in that position", loc)
         }
